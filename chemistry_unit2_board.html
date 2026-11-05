@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IAL Chemistry Unit 2 (May 2026) Interactive Solved Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f4ff;--card:#fff;--ink:#1c1b3a;--mut:#5b5f82;--line:#dde2f7;--A:#0d9488;--B:#7c3aed;--C:#ea580c;--ok:#16a34a;--bad:#dc2626;--why:#e6f8ec;--tip:#fff3e0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12122a;--card:#1d1d3d;--ink:#eceaff;--mut:#a9acd2;--line:#34345e;--why:#12301f;--tip:#3b2a14}}
+:root[data-theme="dark"]{--bg:#12122a;--card:#1d1d3d;--ink:#eceaff;--mut:#a9acd2;--line:#34345e;--why:#12301f;--tip:#3b2a14}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.55 Nunito,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:20}
+header{background:linear-gradient(120deg,#4f46e5,#7c3aed 45%,#db2777);color:#fff;padding:28px 18px 56px;position:relative;overflow:hidden}
+header h1{margin:0 0 6px;font-weight:900;font-size:clamp(24px,5vw,40px);line-height:1.1;max-width:720px}
+header p{margin:0;max-width:640px;opacity:.92}
+.bub{position:absolute;bottom:-30px;border-radius:50%;background:rgba(255,255,255,.22);animation:rise 7s linear infinite}
+@keyframes rise{to{transform:translateY(-260px);opacity:0}}
+.wrap{max-width:860px;margin:0 auto;padding:0 14px 60px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;margin:-34px auto 18px;max-width:860px;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:10px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 6px 18px rgba(60,40,140,.18)}
+.tot{font-weight:900;font-size:22px;margin-right:auto}.tot small{font-size:13px;color:var(--mut);font-weight:700}
+nav a{text-decoration:none;color:#fff;font-weight:800;font-size:14px;padding:6px 12px;border-radius:99px}
+nav a:nth-of-type(1){background:var(--A)}nav a:nth-of-type(2){background:var(--B)}nav a:nth-of-type(3){background:var(--C)}
+#barw{flex-basis:100%;height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+#bar{height:100%;width:0;background:linear-gradient(90deg,var(--A),var(--B),var(--C));transition:width .6s}
+#msg{flex-basis:100%;font-size:13px;color:var(--mut);font-weight:700}
+.how{background:var(--card);border-radius:16px;padding:14px 16px;border:2px dashed var(--line);margin-bottom:10px}
+h2.sec{margin:34px 0 4px;font-weight:900;font-size:26px;color:var(--c)}
+.secd{margin:0 0 14px;color:var(--mut)}
+.card{background:var(--card);border-radius:18px;padding:16px 16px 14px;margin:0 0 16px;border:2px solid var(--line);border-left:10px solid var(--c)}
+.s-A{--c:var(--A)}.s-B{--c:var(--B)}.s-C{--c:var(--C)}
+.hd{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.qn{background:var(--c);color:#fff;font-weight:900;border-radius:10px;padding:2px 10px}
+.mk{margin-left:auto;font-size:13px;font-weight:800;color:var(--mut)}
+.q{margin:6px 0 10px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:transparent;color:var(--ink);font:inherit;cursor:pointer;transition:transform .15s,border-color .15s,background .2s}
+.opt:hover:not(:disabled){transform:translateX(4px);border-color:var(--c)}
+.opt:focus-visible,.go:focus-visible,input:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.opt b{min-width:22px;color:var(--c)}
+.opt.ok{background:var(--ok);border-color:var(--ok);color:#fff;animation:pop .4s}
+.opt.bad{background:var(--bad);border-color:var(--bad);color:#fff;animation:shake .4s}
+.opt.ok b,.opt.bad b{color:#fff}
+@keyframes pop{50%{transform:scale(1.04)}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.box{border-radius:12px;padding:10px 12px;margin-top:10px;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}}
+.why{background:var(--why);border-left:6px solid var(--ok)}
+.tip{background:var(--tip);border-left:6px solid #f59e0b}
+.go{background:var(--c);color:#fff;border:0;border-radius:12px;padding:9px 16px;font:800 15px Nunito,sans-serif;cursor:pointer}
+.go.alt{background:transparent;color:var(--c);border:2px solid var(--c);margin:4px 6px 4px 0}
+.go.alt.on{background:var(--c);color:#fff}
+.st{margin:8px 0;padding-left:22px}
+.st li{margin:6px 0;opacity:0;animation:fade .5s forwards}
+.pts label{display:block;margin:3px 0;cursor:pointer}
+.pts input{accent-color:var(--c);margin-right:8px;width:17px;height:17px;vertical-align:-3px}
+.wd{background:color-mix(in srgb,var(--c) 9%,transparent);border-radius:14px;padding:10px;margin:8px 0}
+.wd small{color:var(--mut);font-weight:700}
+.sv{width:100%;max-height:270px;display:block}
+.sv text{fill:var(--ink);font:700 10px Nunito,sans-serif}
+.sv .ax{stroke:var(--mut);stroke-width:1.5;fill:none}
+input[type=range]{width:100%;accent-color:var(--c)}
+.chip{display:inline-block;border-radius:99px;padding:4px 12px;margin:4px 4px 0 0;font-weight:800;color:#fff;animation:pop .5s}
+.dot{transform-box:fill-box;transform-origin:center;animation:pop .6s backwards}
+button.reset{margin-top:20px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.st li{opacity:1}}
+</style></head><body>
+<header>
+<span class="bub" style="left:6%;width:22px;height:22px"></span><span class="bub" style="left:22%;width:36px;height:36px;animation-delay:2s"></span><span class="bub" style="left:48%;width:16px;height:16px;animation-delay:1s"></span><span class="bub" style="left:70%;width:30px;height:30px;animation-delay:3.5s"></span><span class="bub" style="left:88%;width:20px;height:20px;animation-delay:.5s"></span>
+<div class="wrap" style="padding-bottom:0"><h1>Edexcel IAL Chemistry Unit 2 (WCH12/01), May 2026</h1>
+<p>Energetics, Group Chemistry, Halogenoalkanes and Alcohols. Try each question first, then reveal the solution and tick the marks you earned.</p></div>
+</header>
+<nav><div class="tot"><span id="sc">0</span> / 80 <small>marks</small></div>
+<a href="#A">A: <span id="sA">0</span>/20</a><a href="#B">B: <span id="sB">0</span>/40</a><a href="#C">C: <span id="sC">0</span>/20</a>
+<div id="barw"><div id="bar"></div></div><div id="msg">Pick an answer to start.</div></nav>
+<div class="wrap">
+<div class="how"><b>How to use:</b> In Section A tap an option (green = right, red = wrong). In Sections B and C press <b>Show solution</b>, read the steps, then tick the mark points you had. Look for the <b>Play with it</b> boxes: sliders let you see the graph or colour change yourself.</div>
+<div id="app"></div>
+<button class="go reset" onclick="location.reload()">Start again</button>
+</div>
+<script>
+const SEC={A:['Section A: multiple choice','Answer each in about a minute. 20 marks.'],B:['Section B: short and structured','Show your working. 40 marks.'],C:['Section C: alcohols','Calculations, graphs and tests. 20 marks.']};
+const M=(s,n,t,o,a,w,x={})=>({s,n,t,o,a,w,...x});
+const Wr=(s,n,t,steps,pts,x={})=>({s,n,t,steps,pts,...x});
+const Q=[
+M('A','1','Which is an ionic equation?',['MgO + 2CH₃COO⁻ + 2H⁺ → Mg²⁺ + 2CH₃COO⁻ + H₂O','2NH₃ + 2H⁺ + SO₄²⁻ → 2NH₄⁺ + SO₄²⁻','2Ag⁺ + 2NO₃⁻ + 2K⁺ + CrO₄²⁻ → Ag₂CrO₄ + 2K⁺ + 2NO₃⁻','HCO₃⁻ + H⁺ → CO₂ + H₂O'],3,'An ionic equation shows only the species that change. A, B and C repeat the same ion on both sides (spectator ions). D has none.'),
+M('A','2','Which compound forms hydrogen bonds in the liquid state?',['ammonia','hydrogen chloride','hydrogen cyanide','methane'],0,'H must be bonded directly to N, O or F, with a lone pair on a neighbouring molecule. NH₃ qualifies. In HCN the H is on carbon.'),
+M('A','3','Which substance has permanent dipole–permanent dipole interactions?',['chloromethane','ethene','sulfur hexafluoride','tetrachloromethane'],0,'The molecule must be polar overall. CH₃Cl’s dipoles do not cancel. Ethene, SF₆ (octahedral) and CCl₄ (tetrahedral) are symmetrical, so only London forces.'),
+M('A','4','What is the oxidation number of oxygen in H₂O₂?',['−2','−1','0','+2'],1,'H is +1 and the molecule is neutral: 2(+1) + 2x = 0, so x = −1. A standard exception to −2.'),
+M('A','5','How do the oxidation numbers of C, H and O change in complete combustion of methane?',['C up, H up, O down','C up, H no change, O down','C down, H no change, O up','C down, H down, O up'],1,'CH₄ + 2O₂ → CO₂ + 2H₂O. C: −4 → +4 (up). H: +1 → +1 (same). O: 0 → −2 (down).'),
+M('A','6','N₂(g) + 3H₂(g) ⇌ 2NH₃(g). The container volume is increased at constant temperature. What happens?',['pressure decreases, position shifts left','pressure increases, position shifts left','pressure decreases, position shifts right','pressure increases, position shifts right'],0,'More volume means lower pressure. The system opposes this by moving to the side with more gas moles: left has 4, right has 2, so it shifts left.'),
+M('A','7','Which is NOT an important property of a primary standard?',['forms stable solutions','high solubility in water','low molar mass','reacts rapidly and completely'],2,'A primary standard needs a HIGH molar mass: a larger mass is weighed, so the balance error is a smaller percentage.',{tip:'Trap: “low molar mass” sounds sensible. Remember the opposite.'}),
+M('A','8(a)','True titre is 24.00 cm³. Which student has the most accurate mean titre? (Drag nothing, just look at the dots below.)',['Student 1 (24.15)','Student 2 (24.05)','Student 3 (23.75)','Student 4 (23.90)'],1,'Accurate = close to the true value. Errors: 0.15, 0.05, 0.25, 0.10 cm³, so Student 2.',{wd:'dp'}),
+M('A','8(b)','Which student has the most precise titres?',['Student 1','Student 2','Student 3','Student 4'],0,'Precise = results close to each other. Spreads: S1 0.10, S2 0.45, S3 0.40, S4 0.90 cm³, so Student 1.',{tip:'The rough titre is not counted when judging precision.'}),
+M('A','9','A gas extinguished a lighted splint, turned limewater cloudy and turned blue litmus red. Which gas?',['ammonia','carbon dioxide','nitrogen dioxide','sulfur dioxide'],1,'CO₂ does not support burning, forms insoluble CaCO₃ in limewater, and makes weak carbonic acid (litmus red).',{tip:'SO₂ also clouds limewater and is acidic, but the standard pairing points to CO₂. SO₂ turns acidified dichromate(VI) orange to green.'}),
+M('A','10','In which solid are only London forces broken on melting?',['diamond','magnesium oxide','poly(ethene)','silver'],2,'Diamond: covalent bonds. MgO: ionic. Silver: metallic. Poly(ethene) chains are held by London forces; the covalent bonds inside the chains stay intact.'),
+M('A','11','Which standard enthalpy change does not necessarily refer to one mole of substance?',['ΔcH⦵','ΔfH⦵','ΔrH⦵','ΔneutH⦵'],2,'Combustion is per mole of fuel, formation per mole of compound, neutralisation per mole of water. ΔrH⦵ is “for the equation as written”.'),
+M('A','12','Student’s suggestions: I catalysts always increase atom economy to 100%; II always increase rate; III always decrease energy consumption. Which are correct?',['I and II','I and III','I, II and III','II and III'],3,'I is false (products are unchanged, so atom economy is unchanged). II is true (lower activation energy route). III is accepted: lower Ea allows lower temperature or pressure.',{tip:'Only D lacks I, and I is clearly false.'}),
+M('A','13','Which species can act as a nucleophile?',['NH₄⁺','Cl₂','NH₃','CO₂'],2,'A nucleophile donates a lone pair. NH₃ has one on N; NH₄⁺ has used it. CO₂ is itself an electrophile.'),
+M('A','14','How many structural isomers have the formula C₄H₉Br?',['2','3','4','5'],2,'Straight chain: 1-bromobutane, 2-bromobutane. Branched: 1-bromo-2-methylpropane, 2-bromo-2-methylpropane. Total 4. The optical isomers of 2-bromobutane are stereoisomers, so not counted.'),
+M('A','15','Which is a redox reaction?',['C₂H₄ + H₂ → C₂H₆','HCl + NaOH → NaCl + H₂O','(CH₃)₃COH + HCl → (CH₃)₃CCl + H₂O','CaO + SiO₂ → CaSiO₃'],0,'In A, H₂ (0) becomes C–H (+1) and C goes −2 → −3. In B, C and D no oxidation numbers change.'),
+M('A','16(a)','Substances: V slightly soluble, pH 12.4. W very soluble, pH 7.0. X slightly soluble, pH 7.0. Y reacts to form a solution, pH 12.4. Z insoluble. Which could be calcium?',['V','W','X','Y'],3,'Ca + 2H₂O → Ca(OH)₂ + H₂. It reacts and gives an alkaline solution.'),
+M('A','16(b)','Using the same table, which could be barium sulfate?',['V','W','Y','Z'],3,'BaSO₄ is insoluble, so no solution forms.'),
+M('A','16(c)','Using the same table, which could be calcium hydroxide?',['V','W','Y','Z'],0,'Ca(OH)₂ is slightly soluble and alkaline (limewater). It dissolves, it does not react, so V and not Y.'),
+M('A','17','Which isomer of C₉H₂₀ has the lowest boiling temperature?',['nonane (no branches)','2-methyloctane','2,2-dimethylheptane','2,4,4-trimethylhexane'],3,'Same number of electrons, so the more branched and compact the molecule, the less surface contact, the weaker the London forces. D is the most branched.'),
+
+Wr('B','18(a)(i)','Equation for chlorine with cold aqueous sodium hydroxide.',['Cold dilute NaOH gives chloride and chlorate(I) (bleach).','<b>Cl₂ + 2NaOH → NaCl + NaClO + H₂O</b>','Check: 2 Na, 2 O, 2 H and 2 Cl on each side.'],['Correct balanced equation']),
+Wr('B','18(a)(ii)','Cl₂ + 6NaOH → 5NaCl + NaClO₃ + 3H₂O. Explain disproportionation using oxidation numbers.',['Disproportionation: the <b>same element is oxidised and reduced</b> in one reaction.','Cl: 0 → −1 in NaCl (reduced).','Cl: 0 → +5 in NaClO₃ (oxidised).'],['Oxidation numbers 0, −1 and +5','Same element oxidised and reduced'],{tip:'Numbers alone lose the second mark: say which is oxidised and which reduced.'}),
+Wr('B','18(b)','A compound of Na, Br and O is 15.3% Na and 52.9% Br by mass. Find the empirical formula.',['O by difference: 100 − 15.3 − 52.9 = 31.8%','Moles: Na 15.3 ÷ 23.0 = 0.665; Br 52.9 ÷ 79.9 = 0.662; O 31.8 ÷ 16.0 = 1.99','Divide by the smallest (0.662): 1.00 : 1.00 : 3.00','<b>NaBrO₃</b> (sodium bromate(V))'],['Moles of each element','Ratio ÷ smallest','NaBrO₃']),
+Wr('B','18(c)(i)','Conc. H₂SO₄ + solid NaI: NaI + H₂SO₄ → NaHSO₄ + HI. How does the iodide ion act?',['I⁻ takes an H⁺ to make HI: <b>a base (proton acceptor)</b>.','No oxidation numbers change, so it is not a reducing agent here.'],['Base / proton acceptor']),
+Wr('B','18(c)(ii)','Reaction 2: HI reacts further to give iodine and a ‘bad egg’ gas. Classify the reaction.',['The gas is H₂S.','I⁻ → I₂ (−1 to 0) is oxidised; S in H₂SO₄ (+6 → −2) is reduced.','<b>Redox.</b> H₂SO₄ is the oxidising agent, HI the reducing agent.'],['Redox']),
+Wr('B','18(c)(iii)','Reaction 3: HI gives iodine and a yellow solid. Write a balanced equation.',['Yellow solid = sulfur. S goes +6 → 0 (gains 6 e⁻).','6 I⁻ lose 6 e⁻ to make 3 I₂.','<b>6HI + H₂SO₄ → 3I₂ + S + 4H₂O</b>','Check H: 6 + 2 = 8 = 4 × 2. O: 4 = 4.'],['Correct species','Balanced']),
+Wr('B','19(a)','Give the formula of an acid in acid rain.',['SO₂ and nitrogen oxides from burning fuels dissolve in rain.','<b>H₂SO₄</b> (or HNO₃; H₂SO₃ and HNO₂ also accepted). A formula is asked for, not a name.'],['Correct formula']),
+Wr('B','19(b)(i)','Marble chips + HCl: the graph levels off at 260 cm³. Calculate the initial rate using a tangent. Include units.',['Rate = gradient of the curve. Draw a tangent that touches the curve at the origin.','Use a big triangle: the tangent reaches 260 cm³ at about 26 s.','Gradient = 260 ÷ 26 = <b>10 cm³ s⁻¹</b> (accept 9 to 11).'],['Tangent at t = 0','Gradient from a large triangle','Units cm³ s⁻¹'],{wd:'tg',tip:'A chord joining two points, or a tangent that crosses the curve, is the usual error.'}),
+Wr('B','19(b)(ii)','Repeat with larger marble chips (same total mass). Draw the new line and justify it. (Use the chip-size slider in the box above.)',['Line: from the origin, <b>less steep</b>, levels at the <b>same 260 cm³</b>, later. It must not cross the original.','Larger chips have a smaller surface area, so fewer particles are exposed, fewer collisions per second, lower rate.','Same moles of marble, so the same CO₂ and the same final volume.'],['Slower initial rate','Same final volume','Surface area and collision frequency']),
+Wr('B','19(c)','Explain the trend in thermal stability of Group 2 carbonates down the group.',['Thermal stability <b>increases</b> down the group.','The cation’s radius increases, so its <b>charge density decreases</b> (same 2+ spread over a bigger ion).','Less polarisation of the carbonate ion’s electron cloud, so the C–O bond is weakened less.','A higher temperature is needed to give the oxide and CO₂.'],['Stability increases down the group','Charge density of the cation decreases','Less polarisation, so more heat needed'],{tip:'Say “polarising power of the cation decreases”. Do not talk about the size of atoms.'}),
+Wr('B','19(d)(i)','25.0 cm³ of limewater needs 23.35 cm³ of 0.0500 mol dm⁻³ HCl. Ca(OH)₂ + 2HCl → CaCl₂ + 2H₂O. Mass of Ca(OH)₂ in 100 cm³ (3 s.f.)?',['mol HCl = 23.35 ÷ 1000 × 0.0500 = 1.1675 × 10⁻³','Ratio 1 : 2, so mol Ca(OH)₂ in 25.0 cm³ = 5.8375 × 10⁻⁴','× 4 for 100 cm³ = 2.335 × 10⁻³ mol','Mr = 40.1 + 2(17.0) = 74.1; mass = 2.335 × 10⁻³ × 74.1 = <b>0.173 g</b>'],['Moles of HCl','Divide by 2','Multiply by 4 for 100 cm³','Mass 0.173 g'],{tip:'Keep the full calculator value and round once, at the end.'}),
+Wr('B','19(d)(ii)','Ca(OH)₂ is 34.5% less soluble at 70 °C than at 20 °C. Find its concentration at 70 °C.',['Concentration at 20 °C = 5.8375 × 10⁻⁴ ÷ 0.0250 = 0.02335 mol dm⁻³','“34.5% less” means × (1 − 0.345) = × 0.655','0.02335 × 0.655 = <b>0.0153 mol dm⁻³</b>'],['Concentration at 20 °C','× 0.655 to get 0.0153'],{tip:'Do not multiply by 0.345.'}),
+Wr('B','20(a)(i)','Draw the Maxwell–Boltzmann curve at 30 °C and a labelled activation energy line. (Drag the temperature slider.)',['Lower peak, shifted right, flatter.','Starts at the origin, never touches the x-axis, same total area.','Ea: a vertical line to the right of the peak, labelled Ea. The hotter curve is higher there.'],['Lower peak shifted right, same area','Ea line labelled, right of the peak'],{wd:'mb',tip:'Slips: curve touching the axis, starting above the origin, curves crossing again, Ea left of the peak.'}),
+Wr('B','20(a)(ii)','Explain, using the distributions, why the rate rises at higher temperature.',['At higher T a <b>greater proportion of molecules have energy ≥ Ea</b> (the extra shaded area).','So more frequent successful collisions each second, and a faster rate.'],['Greater proportion with E ≥ Ea','More frequent successful collisions']),
+Wr('B','20(b)','Why is the boiling temperature of HI higher than HCl but lower than HF?',['Boiling breaks intermolecular forces, <b>not</b> the H–X bonds.','HI has more electrons than HCl.','So stronger London forces between HI molecules than between HCl molecules.','HF forms hydrogen bonds (H on F, lone pair on F), stronger than the forces in HI, so HF boils highest.'],['HI has more electrons','Stronger London forces than HCl','HF has hydrogen bonds','Hydrogen bonds are stronger than HI’s forces'],{tip:'Never say the H–F covalent bond breaks on boiling.'}),
+Wr('B','21*','Describe how four different organic compounds can be made from 2-bromobutane and KOH under different conditions. Name the reaction types and the isomerism. (Marks for logical structure.)',['<b>Aqueous KOH, heat</b>: nucleophilic substitution gives <b>butan-2-ol</b>. C2 has four different groups, so <b>optical isomers</b>.','<b>Ethanolic KOH, heat</b>: elimination of HBr (OH⁻ acts as a base).','H lost from C1 gives <b>but-1-ene</b>; from C3 gives <b>but-2-ene</b>. They are <b>positional</b> (structural) isomers.','But-2-ene has restricted rotation about C=C, so <b>E/Z isomers</b>: (E)- and (Z)-but-2-ene.','Four compounds: butan-2-ol, but-1-ene, (Z)-but-2-ene, (E)-but-2-ene.'],['Aqueous KOH: substitution to butan-2-ol','Optical isomerism (chiral C2)','Ethanolic KOH: elimination','But-1-ene and but-2-ene: positional isomers','E/Z isomers of but-2-ene','Logical, structured answer'],{wd:'rx',tip:'Write “aqueous” and “ethanolic”. OH⁻ is a nucleophile in substitution but a base in elimination.'}),
+
+Wr('C','22(a)','Suggest two reasons why ethanol is a good solvent for perfume.',['Polar O–H group plus non-polar ethyl chain: dissolves both polar and non-polar perfume compounds.','Volatile (low boiling temperature): evaporates quickly and spreads the scent.','Also accepted: miscible with water, safe on skin, cheap.'],['Reason 1','Reason 2']),
+Wr('C','22(b)(i)','Write the equation for the standard enthalpy change of combustion of methanol, with state symbols.',['One mole of fuel burned completely, so a fraction is allowed.','<b>CH₃OH(l) + 1½O₂(g) → CO₂(g) + 2H₂O(l)</b>','Water is liquid at 298 K.'],['Correct equation with states']),
+Wr('C','22(b)(ii)','150 g water heated from 22.2 °C to 26.9 °C by burning 0.260 g methanol (c = 4.18 J g⁻¹ °C⁻¹). Calculate ΔcH in kJ mol⁻¹, with sign and suitable s.f.',['ΔT = 26.9 − 22.2 = 4.7 °C','q = 150 × 4.18 × 4.7 = 2947 J = 2.947 kJ (use the mass of <b>water</b>)','n = 0.260 ÷ 32.0 = 8.125 × 10⁻³ mol','ΔcH = −2.947 ÷ 8.125 × 10⁻³ = −362.7, so <b>−360 kJ mol⁻¹</b> (2 s.f.; −363 also accepted)'],['q = mcΔT','Moles of methanol','q ÷ n','Negative sign and s.f.'],{tip:'The negative sign is a mark: temperature rose, so exothermic. Convert J to kJ first.'}),
+Wr('C','22(b)(iii)','Give a major reason the experimental value differs from the Data Booklet value.',['<b>Heat loss to the surroundings</b> (beaker, air), so not all heat warmed the water.','Experimental ≈ −363 against Data Booklet −726 kJ mol⁻¹.'],['Heat loss']),
+Wr('C','22(b)(iv)','Plot ΔcH⦵ against carbon atoms for alcohols with 2 to 8 carbons (−1367, −2021, −2676, −3329, −3984, ?, −5294). Slide to see the line.',['x-axis: number of carbon atoms. y-axis: ΔcH⦵ / kJ mol⁻¹. Both labelled with units.','Scale over more than half the grid; plot the six points within half a small square.','Draw a <b>straight line of best fit</b>. Each CH₂ adds about −655 kJ mol⁻¹.'],['Axes and labels','Accurate plotting','Straight best-fit line'],{wd:'en'}),
+Wr('C','22(b)(v)','Use your graph to find ΔcH⦵ for heptan-1-ol.',['Go up from 7 carbons to the line, then across to the y-axis.','<b>≈ −4640 kJ mol⁻¹</b> (accept −4600 to −4680).','Check: −3984 − 655 = −4639.'],['Value from the graph']),
+Wr('C','22(c)(i)','2CrO₄²⁻ + 2H⁺ ⇌ Cr₂O₇²⁻ + H₂O, ΔH positive (yellow ⇌ orange). What is seen when the orange mixture is cooled from 50 °C to 5 °C? Justify.',['The forward reaction is endothermic, so the backward reaction is exothermic.','Cooling moves the equilibrium in the exothermic direction (<b>left</b>) to oppose the change.','More yellow CrO₄²⁻: the solution turns <b>yellow</b>.'],['Turns yellow','Shifts left (exothermic) to oppose cooling'],{wd:'cr'}),
+Wr('C','22(c)(ii)','Propan-1-ol is heated with acidified K₂Cr₂O₇ in distillation apparatus. Draw the skeletal formula of the product that distils.',['Distillation removes the aldehyde as it forms (no hydrogen bonding, so a lower boiling temperature), so it is not oxidised further.','<b>Propanal</b>, CH₃CH₂CHO:<br><svg viewBox="0 0 120 52" width="130" style="color:var(--c)"><g stroke="currentColor" stroke-width="3" fill="none"><path d="M8 40L34 24L60 40"/><path d="M60 40L83 27M63 45L86 32"/></g><text x="92" y="30" font-size="16" fill="currentColor">O</text></svg>'],['Propanal']),
+Wr('C','22(c)(iii)','Distinguish the distillate (propanal) from the reflux product using IR spectroscopy. Refer to two bond vibrations and wavenumber ranges.',['The reflux product is <b>propanoic acid</b>, CH₃CH₂COOH.','Propanoic acid shows a <b>broad O–H stretch, 2500 to 3300 cm⁻¹</b>; propanal does not.','Both show a <b>C=O stretch, 1680 to 1750 cm⁻¹</b>, so C=O cannot tell them apart; O–H can.'],['O–H range 2500 to 3300, acid only','C=O range 1680 to 1750, both']),
+Wr('C','22(c)(iv)','Complete the table of tests for the functional groups in the oxidation products.',['<b>Aldehyde</b>: warm with Fehling’s or Benedict’s solution. Blue solution → <b>brick-red precipitate</b>.','<b>Carboxylic acid</b>: add sodium carbonate solution. <b>Effervescence</b> (CO₂, turns limewater cloudy).'],['Aldehyde test and result','Carboxylic acid test and result']),
+Wr('C','22(d)','Suggest one reason an aqueous solution of propan-2-ol is used to clean phone screens, not the pure alcohol.',['Water slows evaporation and makes it less flammable, so safer.','Also accepted: dissolves polar or ionic dirt; protects screen coatings; cheaper.'],['One valid reason'])
+];
+const earned={};
+function upd(){const t={A:0,B:0,C:0};let s=0;for(const k in earned){t[earned[k][0]]+=earned[k][1];s+=earned[k][1]}
+ sc.textContent=s;sA.textContent=t.A;sB.textContent=t.B;sC.textContent=t.C;bar.style.width=s/80*100+'%';
+ msg.textContent=s>=64?'Excellent! A* territory.':s>=48?'Great work. Check the orange notes for the last marks.':s>=24?'Good progress. Keep going!':'Nice start. Read each “why” carefully.'}
+let h='',cur='';
+Q.forEach((q,i)=>{
+ if(q.s!==cur){cur=q.s;h+=`<h2 class="sec" id="${cur}" style="--c:var(--${cur})">${SEC[cur][0]}</h2><p class="secd">${SEC[cur][1]}</p>`}
+ const m=q.pts?q.pts.length:1;
+ h+=`<div class="card s-${q.s}" data-i="${i}"><div class="hd"><span class="qn">Q${q.n}</span><span class="mk">[${m} mark${m>1?'s':''}]</span></div><div class="q">${q.t}</div>`;
+ if(q.wd)h+=`<div class="wd" data-w="${q.wd}"><small>Play with it</small></div>`;
+ if(q.o)h+=q.o.map((o,j)=>`<button class="opt" data-j="${j}"><b>${'ABCD'[j]}</b><span>${o}</span></button>`).join('')+'<div class="res"></div>';
+ else h+=`<button class="go" data-r>Show solution</button><div class="res"></div>`;
+ h+='</div>'});
+app.innerHTML=h;
+app.addEventListener('click',e=>{
+ const card=e.target.closest('.card');if(!card)return;const q=Q[card.dataset.i],res=card.querySelector('.res'),id=q.n;
+ const o=e.target.closest('.opt');
+ if(o&&!card.dataset.done){card.dataset.done=1;const j=+o.dataset.j,ok=j===q.a;
+  card.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(+b.dataset.j===q.a)b.classList.add('ok')});
+  if(!ok)o.classList.add('bad');
+  earned[id]=[q.s,ok?1:0];
+  res.innerHTML=`<div class="box why"><b>${ok?'Correct! ':'Not quite. '}</b>${q.w}</div>`+(q.tip?`<div class="box tip"><b>Teacher note:</b> ${q.tip}</div>`:'');upd()}
+ if(e.target.closest('[data-r]')){const b=e.target.closest('[data-r]');
+  if(res.innerHTML){res.innerHTML='';b.textContent='Show solution';return}
+  b.textContent='Hide solution';
+  res.innerHTML=`<div class="box why"><ol class="st">${q.steps.map((s,k)=>`<li style="animation-delay:${k*.35}s">${s}</li>`).join('')}</ol></div>`+(q.tip?`<div class="box tip"><b>Teacher note:</b> ${q.tip}</div>`:'')+`<div class="box pts"><b>Tick the marks you earned:</b>${q.pts.map(p=>`<label><input type="checkbox" data-p>${p}</label>`).join('')}</div>`}
+});
+app.addEventListener('change',e=>{if(!e.target.matches('[data-p]'))return;const card=e.target.closest('.card'),q=Q[card.dataset.i];
+ earned[q.n]=[q.s,card.querySelectorAll('[data-p]:checked').length];upd()});
+const svg=(v,b)=>`<svg viewBox="${v}" class="sv" role="img">${b}</svg>`;
+const W={
+dp(c){const D=[['S1',[24.20,24.15,24.10],24.15,'#0d9488'],['S2',[23.65,24.10,24.00],24.05,'#7c3aed'],['S3',[23.40,23.80,23.70],23.75,'#ea580c'],['S4',[23.05,23.85,23.95],23.90,'#db2777']];
+ const x=v=>50+(v-23)/1.5*290;let b=`<line x1="${x(24)}" x2="${x(24)}" y1="8" y2="168" stroke="#16a34a" stroke-width="2" stroke-dasharray="5 4"/><text x="${x(24)-30}" y="180">true 24.00</text>`;
+ D.forEach((d,i)=>{const y=28+i*38,sp=(Math.max(...d[1])-Math.min(...d[1])).toFixed(2);
+  b+=`<text x="6" y="${y+4}">${d[0]}</text><line x1="50" x2="340" y1="${y}" y2="${y}" stroke="var(--line)"/>`+d[1].map((v,k)=>`<circle class="dot" cx="${x(v)}" cy="${y}" r="7" fill="${d[3]}" style="animation-delay:${i*.2+k*.1}s"/>`).join('')+`<path d="M${x(d[2])} ${y-12}l5 5-5 5-5-5z" fill="none" stroke="var(--ink)" stroke-width="2"/><text x="${x(d[2])+8}" y="${y-8}">mean ${d[2]}  spread ${sp}</text>`});
+ c.insertAdjacentHTML('beforeend',svg('0 0 360 188',b)+'<small>Dots = titres 1 to 3. Diamond = mean. Close to the green line = accurate. Close together = precise.</small>')},
+mb(c){c.insertAdjacentHTML('beforeend',svg('0 0 360 200','<g id="g"></g><line class="ax" x1="30" y1="170" x2="350" y2="170"/><line class="ax" x1="30" y1="10" x2="30" y2="170"/><text x="250" y="190">Energy of molecules</text><text x="34" y="14">Number of molecules</text>')+'<label>Temperature: <b id="tv">20</b> °C<input type="range" min="20" max="100" value="20" id="ts"></label><p id="mt"></p>');
+ const f=(E,T)=>{const k=(T+273)/293;return Math.sqrt(E)*Math.exp(-E/k)/(0.8862*Math.pow(k,1.5))},X=E=>30+E*32,Y=v=>170-v*300,EA=3;
+ const P=T=>{let d='';for(let E=0;E<=10;E+=.1)d+=(E?'L':'M')+X(E).toFixed(1)+' '+Y(f(E,T)).toFixed(1);return d};
+ const fr=T=>{let a=0,t=0;for(let E=0;E<40;E+=.05){const v=f(E,T);t+=v;if(E>=EA)a+=v}return a/t*100};
+ const g=c.querySelector('#g'),ts=c.querySelector('#ts');
+ const draw=()=>{const T=+ts.value;c.querySelector('#tv').textContent=T;let s=`M${X(EA)} 170`;for(let E=EA;E<=10;E+=.1)s+='L'+X(E).toFixed(1)+' '+Y(f(E,T)).toFixed(1);s+=`L${X(10)} 170Z`;
+  g.innerHTML=`<path d="${s}" fill="#ea580c" opacity=".35"/><path d="${P(20)}" fill="none" stroke="#7c3aed" stroke-width="3"/><path d="${P(T)}" fill="none" stroke="#ea580c" stroke-width="3" stroke-dasharray="${T==20?'0':'6 3'}"/><line x1="${X(EA)}" x2="${X(EA)}" y1="30" y2="170" stroke="#16a34a" stroke-width="2.5"/><text x="${X(EA)+4}" y="40">Ea</text>`;
+  c.querySelector('#mt').innerHTML=`Violet = 20 °C (${fr(20).toFixed(1)}% have E ≥ Ea). Orange = ${T} °C: <b>${fr(T).toFixed(1)}%</b> have E ≥ Ea (shaded). Curves keep the same area.`};
+ ts.oninput=draw;draw()},
+tg(c){c.insertAdjacentHTML('beforeend',svg('0 0 360 215','<g id="g"></g><line class="ax" x1="40" y1="190" x2="345" y2="190"/><line class="ax" x1="40" y1="8" x2="40" y2="190"/><text x="270" y="206">time / s</text><text x="44" y="14">volume / cm³</text>')+'<label>Chip size: <b id="kv">1.0</b> × (1 = original)<input type="range" min="1" max="2.2" step=".1" value="1" id="ks"></label><label><input type="checkbox" id="tc" checked> show tangent and triangle</label><p id="tt"></p>');
+ const x=t=>40+t*5,y=v=>190-v*.6,V=(t,k)=>260*(1-Math.exp(-t/(26*k)));
+ const P=k=>{let d='';for(let t=0;t<=60;t+=1)d+=(t?'L':'M')+x(t)+' '+y(V(t,k)).toFixed(1);return d};
+ const g=c.querySelector('#g'),ks=c.querySelector('#ks'),tc=c.querySelector('#tc');
+ const draw=()=>{const k=+ks.value,t1=26*k;c.querySelector('#kv').textContent=k.toFixed(1);
+  let s=`<line x1="40" x2="340" y1="${y(260)}" y2="${y(260)}" stroke="var(--mut)" stroke-dasharray="2 4"/><text x="300" y="${y(260)-4}">260</text><path d="${P(1)}" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="${k==1?'0':'5 4'}"/>`;
+  if(k>1)s+=`<path d="${P(k)}" fill="none" stroke="#ea580c" stroke-width="3"/>`;
+  if(tc.checked)s+=`<line x1="${x(0)}" y1="${y(0)}" x2="${x(t1)}" y2="${y(260)}" stroke="#dc2626" stroke-width="2.5"/><path d="M${x(0)} ${y(0)}H${x(t1)}V${y(260)}" fill="none" stroke="#dc2626" stroke-dasharray="4 3"/><text x="${x(t1)+3}" y="${y(130)}">260</text><text x="${x(t1/2)-6}" y="186">${t1.toFixed(0)} s</text>`;
+  g.innerHTML=s;c.querySelector('#tt').innerHTML=`Initial rate = 260 ÷ ${t1.toFixed(0)} = <b>${(10/k).toFixed(1)} cm³ s⁻¹</b>. ${k>1?'Bigger chips: smaller surface area, shallower start, same final 260 cm³.':'Original reaction: about 10 cm³ s⁻¹.'}`};
+ ks.oninput=tc.onchange=draw;draw()},
+en(c){c.insertAdjacentHTML('beforeend',svg('0 0 360 215','<g id="g"></g><line class="ax" x1="40" y1="12" x2="345" y2="12"/><line class="ax" x1="40" y1="12" x2="40" y2="200"/><text x="150" y="208">number of carbon atoms</text><text x="44" y="26">ΔcH⦵ / kJ mol⁻¹ (0 at top)</text>')+'<label>Carbon atoms: <b id="nv">7</b><input type="range" min="2" max="8" value="7" id="ns"></label><p id="nt"></p>');
+ const x=n=>40+(n-1)*36,y=v=>12-v*.0285,pts=[[2,-1367],[3,-2021],[4,-2676],[5,-3329],[6,-3984],[8,-5294]];
+ const g=c.querySelector('#g'),ns=c.querySelector('#ns');
+ const draw=()=>{const n=+ns.value,v=-655*n-57;
+  g.innerHTML=`<line x1="${x(1)}" y1="${y(-712)}" x2="${x(9)}" y2="${y(-5952)}" stroke="#7c3aed" stroke-width="2.5"/>`+pts.map(p=>`<circle class="dot" cx="${x(p[0])}" cy="${y(p[1])}" r="5" fill="#ea580c"/>`).join('')+`<path d="M${x(n)} 12V${y(v)}H40" fill="none" stroke="#dc2626" stroke-dasharray="4 3" stroke-width="2"/><circle cx="${x(n)}" cy="${y(v)}" r="6" fill="#dc2626"/>`+[2,4,6,8].map(k=>`<text x="${x(k)-3}" y="12" dy="-2">${k}</text>`).join('');
+  c.querySelector('#nv').textContent=n;c.querySelector('#nt').innerHTML=`${n} carbons on the line: ΔcH⦵ ≈ <b>${v.toLocaleString('en')} kJ mol⁻¹</b>${n==7?' (heptan-1-ol, accept −4600 to −4680)':''}.`};
+ ns.oninput=draw;draw()},
+cr(c){c.insertAdjacentHTML('beforeend',svg('0 0 200 125','<path id="fl" d="M82 8h36v40l42 58q6 12-9 12H49q-15 0-9-12l42-58z" stroke="var(--ink)" stroke-width="3"/><text id="ft" x="100" y="122" text-anchor="middle"></text>')+'<label>Temperature: <b id="cv">50</b> °C<input type="range" min="5" max="50" value="50" id="cs"></label><p id="ct"></p>');
+ const cs=c.querySelector('#cs');c.querySelector('svg').style.maxWidth='230px';
+ const draw=()=>{const T=+cs.value,t=(T-5)/45;c.querySelector('#fl').style.fill=`rgb(250,${Math.round(204-89*t)},21)`;c.querySelector('#fl').style.transition='fill .3s';c.querySelector('#cv').textContent=T;
+  c.querySelector('#ct').innerHTML=T>40?'Hot: orange Cr₂O₇²⁻ favoured.':T<15?'Cold: equilibrium shifted left, <b>more yellow CrO₄²⁻</b>.':'Cooling: shifting left (exothermic direction), turning yellow.'};
+ cs.oninput=draw;draw()},
+rx(c){c.insertAdjacentHTML('beforeend','<button class="go alt on" data-k="a">Aqueous KOH</button><button class="go alt" data-k="e">Ethanolic KOH</button><div id="rp"></div>');
+ const R={a:['Nucleophilic substitution: OH⁻ replaces Br','<span class="chip" style="background:#0d9488">butan-2-ol</span><span class="chip" style="background:#7c3aed">optical isomers (chiral C2)</span>'],e:['Elimination: OH⁻ is a base, HBr is lost','<span class="chip" style="background:#ea580c">but-1-ene</span><span class="chip" style="background:#db2777">(Z)-but-2-ene</span><span class="chip" style="background:#7c3aed">(E)-but-2-ene</span><br><small>but-1-ene vs but-2-ene: positional isomers. (E)/(Z): E/Z isomers.</small>']};
+ const show=k=>{c.querySelectorAll('[data-k]').forEach(b=>b.classList.toggle('on',b.dataset.k===k));c.querySelector('#rp').innerHTML=`<p><b>2-bromobutane</b> + ${k=='a'?'aqueous':'ethanolic'} KOH, heat: <b>${R[k][0]}</b></p>${R[k][1]}`};
+ c.onclick=e=>{const b=e.target.closest('[data-k]');if(b)show(b.dataset.k)};show('a')}
+};
+document.querySelectorAll('[data-w]').forEach(c=>W[c.dataset.w](c));
+</script></body></html>
